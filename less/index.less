@@ -1,5 +1,5 @@
 // Is this working?
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -13,8 +13,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -25,7 +25,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -55,5 +55,247 @@ table {
 
 html, body {
     height: 100%;
+	font-size: 62.5%;
+	font-family: sans-serif;
 }
 
+/* Variables */
+
+@small: 1%;
+@medium: 3%;
+@large: 5%;
+@tableBorder: 1px solid lightgrey;
+@headerFont: 'Barriecito';
+
+/* Mixins */
+
+.flexRow(){
+    display: flex;
+    flex-direction: row;
+}
+
+.flexColumn(){
+    display: flex;
+    flex-direction: column;
+}
+
+.col-6{
+	width: 48%;
+	transition: width 0.5s;
+
+	@media screen and (max-width: 800px){
+		width: 100%;
+	}
+}
+
+.normalizeLinks(){
+	a{
+		color: inherit;
+		text-decoration: none;
+	}
+
+	a:hover{
+		color: red;
+	}
+}
+
+
+/* Regular */
+
+h1, h2, h3, h4, h5, h6{
+	font-family: @headerFont;
+}
+
+h1{
+	font-size: 4rem;
+	font-weight: 300;
+
+	@media screen and (max-width: 800px){
+		font-size: 3rem;
+	}
+
+	@media screen and (max-width: 600px){
+		font-size: 2.7rem;
+	}
+}
+
+h2{
+	font-size: 2.7rem;
+	font-weight: 600;
+	color: rgba(10,10,10,0.9);
+
+	@media screen and (max-width: 800px){
+		font-size: 2rem;
+	}
+
+	@media screen and (max-width: 600px){
+		font-size: 1.7rem;
+	}
+}
+
+.container{
+	width: 65%;
+    height: 100%;
+	margin: 0 auto;
+    .flexColumn();
+	font-size: 1.5rem;
+	transition: width 1s;
+
+	@media screen and (max-width: 800px){
+		width: 90%;
+	}
+
+	@media screen and (max-width: 600px){
+		width: 100%;
+	}
+}
+
+header{
+	nav{
+		ul{
+			.flexRow();
+			justify-content: flex-end;
+
+			li{
+				padding: @medium;
+				font-size: 2rem;
+
+				.normalizeLinks();
+			}
+		}
+	}
+}
+
+#personal{
+	.flexColumn();
+	background-color: lightgrey;
+	padding: @medium;
+
+	img{
+		width: 30%;
+		border-radius: 20rem;
+		margin: @medium;
+	}
+
+	p{
+		padding-top: @medium;
+		font-size: 1.8rem;
+	}
+
+	p:nth-of-type(1){
+		padding-bottom: @medium;
+		border-bottom: 0.5px solid rgba(0,0,0,0.5);
+	}
+
+	p:nth-of-type(2){
+		margin-bottom: @medium;
+	}
+
+	button{
+		width: 30%;
+		border: none;
+		border-radius: 5px;
+		font-size: 2rem;
+		padding: @small;
+
+		@media screen and (max-width: 800px){
+			width: 35%;
+		}
+
+
+	}
+
+}
+
+#about{
+	.flexRow();
+	justify-content: space-between;
+	margin-top: @medium;
+
+	h2{
+		margin-top: @medium;
+	}
+
+	.description{
+		p{
+			margin-top: @large;
+			line-height: 2rem;
+
+			@media screen and (max-width: 800px){
+				margin-top: @small;
+			}
+		}
+	}
+
+	.table{
+		ul{
+			border: @tableBorder;
+			border-radius: 5px;
+			margin-top: @large;
+
+			@media screen and (max-width: 800px){
+				margin-top: @small;
+			}
+
+			li{
+				padding: @medium;
+				padding-left: @large;
+				border-bottom: @tableBorder;
+			}
+
+			li:last-child{
+				border-bottom: none;
+			}
+		}
+	}
+
+	@media screen and (max-width: 800px){
+		.flexColumn();
+		margin-left: @medium;
+		margin-right: @medium;
+	}
+}
+
+#history{
+	width: 100%;
+
+	h2{
+		margin-top: @medium;
+		margin-bottom: @medium;
+	}
+
+	table{
+		width: 100%;
+
+		td, th {
+		  border-top: @tableBorder;
+		  border-bottom: @tableBorder;
+		  text-align: left;
+		  padding: @small;
+		}
+
+		tr:first-child{
+			font-weight: bold;
+		}
+
+		tr:nth-of-type(even){
+			background-color: #eee;
+		}
+	}
+
+	@media screen and (max-width: 800px){
+		padding-left: @medium;
+		padding-right: @medium;
+	}
+}
+
+footer{
+	margin-top: @medium;
+	padding: @medium;
+	background-color: #ddd;
+	.flexRow();
+	justify-content: space-around;
+	align-items: center;
+
+	.normalizeLinks()
+}
